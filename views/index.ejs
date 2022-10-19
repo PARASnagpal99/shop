@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>wikiAPI</title>
+  <link rel="stylesheet" href="https://bootswatch.com/5/quartz/bootstrap.min.css">
+</head>
+
+<body>
+   <div class="main">
+     <form method="post" action="/ideas/{{id}}?_method=DELETE">
+      <input type="hidden" name="_method" value="DELETE">
+      <button class="btn btn-primary" type="submit">DELETE ALL</button>
+      </form>
+   </div>
+  <div class="form-group">
+    <h2 class="text-muted">Enter Some information Related to Programming</h2>
+    <form action="/articles" method="post">
+      <label for="title" class="form-label mt-4">Title</label><input type="text" class="form-control" placeholder="title" name="title">
+      <label for="content" class="form-label mt-4">Content</label><input type="text" class="form-control" placeholder="content" name="content">
+      <button class="btn btn-primary" type="submit">Send</button>
+    </form>
+  </div>
+  <div class="list-group">
+    <%   articles.map((article)=>{   %>
+    <h1 class="mb-1"><%= article.title %></h1>
+    <p class="mb-1"><%= article.content %></p>
+    <%  }) %>
+  </div>
+  <script src="https://kit.fontawesome.com/1f8fb87b6d.js" crossorigin="anonymous"></script>
+</body>
+</html>
