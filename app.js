@@ -5,7 +5,7 @@ const methodOverride = require('method-override');
 const mongoose = require('mongoose')
 const Article = require('./models/articles')
 const bodyParser = require('body-parser')
-const {get,post,dlt} = require('./controllers/functions')
+const {get,post,dlt,get2} = require('./controllers/functions')
 
 app.set('view engine','ejs')
 
@@ -24,19 +24,10 @@ app.get('/',(req,res)=>{
   res.render('index2')
 })
 
-app.route('/articles').get(get).post(post).delete(dlt)
+app.route('/articles').get(get).post(post).delete(dlt);
 
-app.get('/articles/:id',async(req,res)=>{
-  try{
-    const id = req.params.id
-    const temp = await Article.findOne({title : id})
-    console.log(temp);
-    res.send(temp)
-  //  res.render('index',{articles : temp})
-  }catch(err){
-    res.send(err)
-  }
-})
+app.route('/articles/:id').get(get2) ;
+
 
 const port = process.env.PORT || 3000 ;
 app.listen(port,()=>{

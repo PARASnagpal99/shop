@@ -1,5 +1,7 @@
 const Article = require('../models/articles')
 
+
+// get all articles
 const get = async(req,res)=>{
   try{
      const temp = await Article.find({})
@@ -35,5 +37,18 @@ const dlt = async(req,res)=>{
   }
 }
 
+// get a specific article 
+const get2 = async(req,res)=>{
+  try{
+    const id = req.params.id
+    const temp = await Article.findOne({title : id})
+    console.log(temp);
+    res.send(temp)
+  //  res.render('index',{articles : temp})
+  }catch(err){
+    res.send(err)
+  }
+}
 
-module.exports = {get,post,dlt}
+
+module.exports = {get,post,dlt,get2}
