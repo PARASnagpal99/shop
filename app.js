@@ -5,7 +5,7 @@ const methodOverride = require('method-override');
 const mongoose = require('mongoose')
 const Article = require('./models/articles')
 const bodyParser = require('body-parser')
-const {get,post,dlt,get2} = require('./controllers/functions')
+const {get,post,dlt,get2,post2,dlt2} = require('./controllers/functions')
 
 app.set('view engine','ejs')
 
@@ -26,7 +26,7 @@ app.get('/',(req,res)=>{
 
 app.route('/articles').get(get).post(post).delete(dlt);
 
-app.route('/articles/:id').get(get2) ;
+app.route('/articles/:id').get(get2).patch(post2).delete(dlt2) ;
 
 
 const port = process.env.PORT || 3000 ;

@@ -37,7 +37,7 @@ const dlt = async(req,res)=>{
   }
 }
 
-// get a specific article 
+// get a specific article
 const get2 = async(req,res)=>{
   try{
     const id = req.params.id
@@ -51,4 +51,27 @@ const get2 = async(req,res)=>{
 }
 
 
-module.exports = {get,post,dlt,get2}
+const post2 = async(req,res)=>{
+  try{
+    const id = req.params.id ;
+    const temp = await Article.updateMany({title : id} , {title : req.body.title , content : req.body.content})
+    res.redirect('/articles')
+  }catch(err){
+    res.send(err)
+  }
+}
+
+
+const dlt2 = async(req,res)=>{
+  try{
+    const id = req.params.id ;
+    await Article.deleteOne({title : id})
+  //  res.redirect('/articles')
+    res.send('deleted')
+  }catch(err){
+    res.send(err)
+  }
+}
+
+
+module.exports = {get,post,dlt,get2,post2,dlt2};
